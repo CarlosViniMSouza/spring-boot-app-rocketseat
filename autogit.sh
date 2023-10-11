@@ -1,6 +1,6 @@
 git add .
-git commit -m "stopped: H2 database"
+git commit -m "stopped: User Table"
 git push -u origin main
 git status
 
-# paused in 8:56 - lesson 02
+# paused in 16:18 - lesson 02
