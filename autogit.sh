@@ -1,9 +1,6 @@
-git init
 git add .
-git commit -m "stopped: Lombok"
-git branch -M main
-git remote add origin https://github.com/CarlosViniMSouza/spring-boot-app-rocketseat.git
+git commit -m "stopped: H2 database"
 git push -u origin main
 git status
 
-# paused in 3:23 - lesson 02
+# paused in 8:56 - lesson 02
