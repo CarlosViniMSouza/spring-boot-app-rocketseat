@@ -1,6 +1,6 @@
 git add .
-git commit -m "stopped: Repository"
+git commit -m "stopped: Response Entity"
 git push -u origin main
 git status
 
-# paused in 23:45 - lesson 02
+# paused in 36:46 - lesson 02
