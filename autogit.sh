@@ -1,6 +1,6 @@
 git add .
-git commit -m "stopped: lesson completed!"
+git commit -m "stopped: TBL Task"
 git push -u origin main
 git status
 
-# completed in 41:21 - lesson 02
+# completed in 04:40 - lesson 03
