@@ -1,6 +1,6 @@
 git add .
-git commit -m "stopped: Register Task"
+git commit -m "stopped: Filter"
 git push -u origin main
 git status
 
-# completed in 11:20 - lesson 03
+# completed in 19:53 - lesson 03
