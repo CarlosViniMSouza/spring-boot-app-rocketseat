@@ -1,6 +1,6 @@
 git add .
-git commit -m "stopped: lesson completed"
+git commit -m "error: validation dont work properly"
 git push -u origin main
 git status
 
-# completed in 45:32 - lesson 03
+# completed in 02:25 - lesson 03
