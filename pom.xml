@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.qrmenu</groupId>
 	<artifactId>apiserver</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>apiserver</name>
 	<description>QRMenu Server/RESTful API</description>
 	<properties>
