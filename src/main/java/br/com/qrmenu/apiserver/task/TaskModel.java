@@ -11,10 +11,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-/*
- * ID | User (ID_USER) | Description | Title | Start Date | End Date | Priority
- */
-
 @Data
 @Entity(name = "tb_tasks")
 public class TaskModel {
@@ -24,7 +20,7 @@ public class TaskModel {
     private UUID id;
     private String description;
 
-    @Column(length = 30)
+    @Column(length = 50)
     private String title;
     private LocalDateTime startAt;
     private LocalDateTime endAt;
@@ -36,8 +32,8 @@ public class TaskModel {
     private LocalDateTime createdAt;
 
     public void setTitle(String title) throws Exception {
-        if (title.length() > 30) {
-            throw new Exception("The field should have 30 characters");
+        if (title.length() > 50) {
+            throw new Exception("The filed should have in max. 50 characters");
         }
 
         this.title = title;

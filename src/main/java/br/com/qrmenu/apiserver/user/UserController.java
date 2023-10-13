@@ -1,8 +1,8 @@
 package br.com.qrmenu.apiserver.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,14 +22,13 @@ public class UserController {
         var user = this.userRepository.findByUsername(userModel.getUsername());
 
         if (user != null) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body("User already exists!");
+            System.out.println("User already exists.");
+            // Mensagem de erro
+            // Status Code
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User already exists.");
         }
 
-        var passwordHashred = BCrypt.withDefaults()
-                .hashToString(12, userModel.getPassword()
-                        .toCharArray());
+        var passwordHashred = BCrypt.withDefaults().hashToString(12, userModel.getPassword().toCharArray());
 
         userModel.setPassword(passwordHashred);
 

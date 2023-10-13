@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,6 @@ import jakarta.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
-
     @Autowired
     private ITaskRepository taskRepository;
 
@@ -35,12 +35,12 @@ public class TaskController {
         // 10/10/2023 - startAt
         if (currentDate.isAfter(taskModel.getStartAt()) || currentDate.isAfter(taskModel.getEndAt())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("A data de início / data de término deve ser maior do que a data atual");
+                    .body("The init day / end day must be greater than the current day.");
         }
 
         if (taskModel.getStartAt().isAfter(taskModel.getEndAt())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("A data de início deve ser menor que a data de término");
+                    .body("The init day must be lower than the end day.");
         }
 
         var task = this.taskRepository.save(taskModel);
@@ -59,20 +59,35 @@ public class TaskController {
         var task = this.taskRepository.findById(id).orElse(null);
 
         if (task == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Tarefa não encontrada");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Task not found.");
         }
 
         var idUser = request.getAttribute("idUser");
 
         if (!task.getIdUser().equals(idUser)) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Usuário não tem permissão para alterar essa tarefa");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User haven't permission to update this task.");
         }
 
         Utils.copyNonNullProperties(taskModel, task);
-
         var taskUpdated = this.taskRepository.save(task);
-
         return ResponseEntity.ok().body(taskUpdated);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(HttpServletRequest request, @PathVariable UUID id) {
+        var task = this.taskRepository.findById(id).orElse(null);
+
+        if (task == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Task not found.");
+        }
+
+        var idUser = request.getAttribute("idUser");
+
+        if (!task.getIdUser().equals(idUser)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User haven't permission to delete this task.");
+        }
+        this.taskRepository.delete(task);
+
+        return ResponseEntity.status(HttpStatus.OK).body("Task deleted");
     }
 }

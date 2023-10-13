@@ -22,7 +22,6 @@ public class Utils {
 
         for (PropertyDescriptor pd : pds) {
             Object srcValue = src.getPropertyValue(pd.getName());
-
             if (srcValue == null) {
                 emptyNames.add(pd.getName());
             }
