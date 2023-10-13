@@ -10,16 +10,8 @@ RUN mvn clean install
 
 FROM openjdk:17-jdk-slim
 
-<<<<<<< HEAD
 EXPOSE 8080
 
 COPY --from=build /target/todolist-1.0.0.jar app.jar
 
 ENTRYPOINT [ "java", "-jar", "app.jar" ]
-=======
-EXPOSE 8081
-
-# COPY --from=build /target/todolist-1.0.0.jar app.jar
-
-# ENTRYPOINT [ "java", "-jar", "app.jar" ]
->>>>>>> 749f395e569dfcf89c133126fa22f17dae540a67
